@@ -1,0 +1,50 @@
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+    $(document).ready(function(){
+    	
+    		$("#myModal").modal('show');
+    	
+        
+    });
+</script>
+
+
+<div id="myModal" class="modal modal-backdrop.in ">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				
+				<h3 class="form-signin">Login</h3>
+				
+			</div>
+			<div class="row">
+				<div class="col-sm-11">
+					<div class="contact-form">
+						
+						
+						
+						<div class="modal-body">
+							<form action="/usuario/login" method="POST" class="form-signin">
+		
+						    <label for="user">Usuario</label>
+							<input type="text" class="form-control" name="username" placeholder="Usuario">
+						    <label for="psw">Contraseña</label>
+							<input type="password" class="form-control" name="password" placeholder="Contraseña">
+							<br>
+							<button type="submit" class="btn btn-success btn-lg  pull-right" >Iniciar sesión</button>
+							<input type="hidden" value="<%= _csrf %>">
+							<br><br>
+						</form>
+
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

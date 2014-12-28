@@ -1,0 +1,34 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+	<h2>Contactos Registrados</h2>
+	<table class="table table-hover" >
+		<th>Nombre</th>
+		<th>Apellido</th>
+		<th>Email</th>
+		<th>Fecha Creación</th>
+		<th colspan="2" class="text-center">Acciones</th>
+		
+		<% _.each(contactos, function(contacto) { %>
+		<tr>
+			<td><%=contacto.name%></td>
+			<td><%=contacto.lastname%></td>
+			<td><%=contacto.email%></td>
+			<td><%=contacto.createdAt%></td>
+			<td>
+				<a href="/contacto/show/<%=contacto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+			</td>
+			<td>
+				<form action="/contacto/destroy/<%= contacto.id%>" method="POST" accept-charset="utf-8">
+					<input type="hidden" name="_method" value="delete"/>
+					<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+					<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+				</form>
+			</td>
+		</tr>
+		<%})%>
+	</table>
+</div>
+<br><br><br><br>

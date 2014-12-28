@@ -1,0 +1,29 @@
+
+
+#wrapper {
+    min-height: 150%;
+    height: auto;
+  
+}
+
+
+
+#footContainer {
+  background: #3B8686;
+position: relative;
+  margin-top: 80px; /* negative value of footer height */
+  height: 250px;
+  clear:both;
+  
+    
+    
+}
+
+@media only screen and (max-device-width: 480px) {
+    #footer {
+        height: auto;
+    }
+}
+
+
+

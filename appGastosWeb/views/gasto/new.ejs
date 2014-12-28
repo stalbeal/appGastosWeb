@@ -1,0 +1,57 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-8 col-md-offset-2">
+		
+			<legend><h2>Agregar Información de un Gasto</h2></legend>
+			<div class="jumbotron" >
+				<form role="form" action="/gasto/create" method="POST">
+					<div class="row">
+						<div class="col-xs-3">
+							<label for="tipo">Tipo</label>
+						</div>
+						<div class="form-group col-md-3">
+							<select  name="tipo" class="form-control" required="required" >
+								<option value="Comida">Comida</option>
+								<option value="Pasajes Paula">Pasajes Paula</option>
+								<option value="Prestamo">Prestamo</option>
+								</select>
+						</div>
+						<div class="col-xs-3">
+							<label for="valor">Valor Total</label>
+						</div>
+						<div class="col-xs-3">
+							<input type="number" class="form-control" id="valor" name="valor" required/>
+						</div>
+						
+					</div>
+					
+					<div class="row">
+						
+						<div class="col-xs-3">
+							<label for="estado">Estado</label>
+						</div>
+						<div class="form-group col-md-3">
+							<select  name="estado" class="form-control" required="required" >
+								<option value="Sin Cancelar">Sin Cancelar</option>
+								<option value="Cancelado">Cancelado</option>
+							
+								</select>
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<label for="description">Descripción</label><textarea type="text" class="form-control" id="descripcion" name="descripcion" rows="4" style="resize: none"> </textarea>
+					</div>
+					<button type="submit" class="btn btn-success btn-lg  pull-right" >Enviar</button>
+					<br>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

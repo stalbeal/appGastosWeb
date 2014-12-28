@@ -1,0 +1,77 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-9 col-md-offset-1">
+		
+			<legend><h2>Agregar Información de Factura</h2></legend>
+			<div class="jumbotron" >
+				<form role="form" action="/factura/create" method="POST">
+					<div class="row">
+						<div class="col-xs-3">
+							<label for="tipo">Factura</label>
+						</div>
+						<div class="form-group col-md-3">
+							<select  name="tipo" class="form-control" required="required" >
+								<option value="UNE">UNE</option>
+								<option value="EPM">EPM</option>
+							
+								</select>
+						</div>
+					
+						<div class="col-xs-4">
+							<label for="cuentasVencidas">Cuentas Vencidas</label>
+						</div>
+						<div class="col-xs-2">
+							<input type="number" class="form-control" id="cuentasVencidas" name="cuentasVencidas" required />
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-xs-3">
+							<label for="fechaPago">Fecha Pago</label>
+						</div>
+						<div class="col-xs-3">
+							<input type="date" class="form-control" id="fechaPago" name="fechaPago" required />
+						</div>
+					
+						<div class="col-xs-3">
+							<label for="fechaLimite">Fecha Limite</label>
+						</div>
+						<div class="col-xs-3">
+							<input type="date" class="form-control" id="fechaLimite" name="fechaLimite" required />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3">
+							<label for="valor">Valor Total</label>
+						</div>
+						<div class="col-xs-3">
+							<input type="number" class="form-control" id="valor" name="valor" required/>
+						</div>
+						<div class="col-xs-3">
+							<label for="estado">Estado</label>
+						</div>
+						<div class="form-group col-md-3">
+							<select  name="estado" class="form-control" required="required" >
+								<option value="Sin Cancelar">Sin Cancelar</option>
+								<option value="Cancelado">Cancelado</option>
+							
+								</select>
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<label for="description">Descripción</label><textarea type="text" class="form-control" id="descripcion" name="descripcion" rows="4" style="resize: none"> </textarea>
+					</div>
+					<button type="submit" class="btn btn-success btn-lg  pull-right" >Enviar</button>
+					<br>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

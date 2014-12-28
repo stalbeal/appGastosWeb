@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gastos</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <!--
+    Stylesheets and Preprocessors
+    ==============================
+    You can always bring in CSS files manually with `<link>` tags, or asynchronously
+      using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+      of Sails' conventional asset pipeline (boilerplate Gruntfile).
+      By default, stylesheets from your `assets/styles` folder are included
+      here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+      are supported. In production, your styles will be minified and concatenated into
+      a single file.
+      
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+      
+      + Change the order of your CSS files
+      + Import stylesheets from other directories
+      + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+      -->
+      <!--STYLES-->
+      <link rel="stylesheet" href="/styles/bootstrap-theme.css">
+      <link rel="stylesheet" href="/styles/bootstrap.css">
+      <link rel="stylesheet" href="/styles/footer.css">
+      <link rel="stylesheet" href="/styles/importer.css">
+      <link rel="stylesheet" href="/styles/navbar.css">
+      <!--STYLES END-->
+      
+    </head>
+    <body>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand " href="/"><img src="/images/logo.png" width="40" height="30"> </a>
+          </div>
+         <!-- <% if(!session.authenticated){ %>-->
+          <div class="collapse navbar-collapse navbar-ex1-collapse ">
+            <ul class="nav navbar-nav">
+              <li >
+                <a href="/">Inicio</a>
+              </li>
+              <li>
+                <a href="/planes/show">Planes</a>
+              </li>
+              <li>
+                <a href="/guarderia/show">Guardería</a>
+              </li>
+              <li>
+                <a href="/contacto/new">Contacto</a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li> <a href="/session/new"  >Inciar Sesión</a></li>
+            </ul>
+           <!--
+            <%}%>
+            <% if(session.authenticated){ %>
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inicio<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/">Ver</a>
+                  </li>
+                  <li>
+                    <a href="/homepage/edit">Editar</a>
+                  </li>
+                </ul>
+              </li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Planes<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/planes/show">Ver</a>
+                  </li>
+                  <li>
+                    <a href="/planes/edit">Editar</a>
+                  </li>
+                </ul>
+              </li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guardería<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/guarderia/show">Ver</a>
+                  </li>
+                  <li>
+                    <a href="/guarderia/edit">Editar</a>
+                  </li>
+                </ul>
+              </li>
+               <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contacto<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/contacto/index">Registros</a>
+                  </li>
+                </ul>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administradores<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/user/new">Registrar</a>
+                  </li>
+                  
+                </ul>
+              </li>
+            </ul>
+            <div class="navbar-right">
+              <ul class="nav navbar-nav navbar-right">
+              <li> <a href="/session/destroy"  >Cerrar Sesión</a></li>
+              </ul>
+            </div>
+            <%}%>
+          </div>-->
+        </div>
+        
+      </nav>
+      <div id="wrapper">
+      <%- body %>
+      
+      <!--
+      Client-side Templates
+      ========================
+      HTML templates are important prerequisites of modern, rich client applications.
+      To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+      that you load these templates client-side.
+      By default, your Gruntfile is configured to automatically load and precompile
+      client-side JST templates in your `assets/templates` folder, then
+      include them here automatically (between TEMPLATES and TEMPLATES END).
+      To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+      + Import templates from other directories
+      + Use a different template engine (handlebars, jade, dust, etc.)
+      + Internationalize your client-side templates using a server-side
+      stringfile before they're served.
+      -->
+      <!--TEMPLATES-->
+      
+      <!--TEMPLATES END-->
+      <!--
+      Client-side Javascript
+      ========================
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+      + Change the order of your scripts
+      + Import scripts from other directories
+      + Use a different preprocessor, like TypeScript
+      -->
+      
+      
+      
+      <!--SCRIPTS-->
+      <script src="/js/dependencies/sails.io.js"></script>
+      <script src="/js/dependencies/jquery-1.11.1.min.js"></script>
+      <script src="/js/bootstrap.js"></script>
+      <script src="/js/bootstrap.min.js"></script>
+      <!--SCRIPTS END-->
+    </body>
+    <div id="footContainer">
+        <div class="container">
+          <div class="row">
+            
+            <br>
+            
+            
+            <div class="col-md-4">
+              <br><br><br><br>
+              <img src="/images/logo.png" width="100" height="100" >
+              
+            </div>
+            
+            <div class="col-md-4">
+              <center>
+              <h3 class="h3blanco">Redes Sociales</h3>
+              <img src="/images/fb.png" >
+              <img src="/images/twt.png" >
+              <img src="/images/gplus.png" >
+              <br><br><br><br>
+              <p class="white">Powered by
+              <a href="http://www.reyesmagossoft.tk"> Stephany</a></p>
+              
+              
+              </center>
+            </div>
+            <div class="col-md-4">
+              <center>
+              <h2 class="h2blanco">Contacto</h2>
+              <p class="lead2"><strong>Móvil Empresarial: </strong> 320 375 37 91</p>
+              <p class="lead2"><strong>Correo: </strong>happypetsmedellin@gmail.com</p>
+              </center>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      </div>
+  </html>
