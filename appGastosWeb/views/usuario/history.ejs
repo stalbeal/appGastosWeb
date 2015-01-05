@@ -1,0 +1,105 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-10 col-md-offset-1">
+			<legend><h2>Resumen</h2></legend>
+			
+
+			
+					<div class="row">
+						<div class="col-xs-2">
+							<p><strong>Fecha </strong></p>
+						</div>
+						<div class="col-xs-10">
+							
+						</div>
+					
+						<div class="col-xs-2">
+							<p><strong>Saldo ultimo envio </strong></p>
+						</div>
+						<div class="col-xs-10">
+							<p><%=saldo.valor%></p>
+						</div>
+					</div>
+					
+				<div>
+				<legend><h2>Historial Facturas</h2></legend>
+				<table class="table table-hover" >
+					
+					<th>Factura</th>
+					<th>Fecha Pago</th>
+					<th>Fecha Limite</th>
+					<th>Cuentas Vencidas</th>
+					<th>Valor</th>
+					<th>estado</th>
+					<th colspan="2" class="text-center">Acciones</th>
+					
+					<% _.each(facturas, function(factura) { %>
+					<tr>
+						<td><%=factura.tipo%></td>
+						<td><%=factura.fechaPago%></td>
+						<td><%=factura.fechaLimite%></td>
+						<td><%=factura.cuentasVencidas%></td>
+						<td><%=factura.valor%></td>
+						<td><%=factura.estado%></td>
+						<td>
+							<a href="/factura/show/<%=factura.id%>" class="btn btn-success btn-sm ">Detalles</a>
+						</td>
+						<td>
+							<a href="/factura/update/<%=factura.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+						</td>
+					<td>
+						<form action="/factura/destroy/<%=factura.id%>" method="POST" accept-charset="utf-8">
+							<input type="hidden" name="_method" value="delete"/>
+							<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+							<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+						</form>
+					</td>
+					</tr>
+		<%})%>
+	</table>
+	</div>
+				
+			<div>
+				<legend><h2>Historial Gastos</h2></legend>
+				<table class="table table-hover" >
+					<th>Tipo</th>
+					<th>Descripcion</th>
+					<th>Valor</th>
+					<th>Fecha</th>
+					<th>Fecha Cancelado</th>
+					<th>estado</th>
+					<th colspan="2" class="text-center">Acciones</th>
+					
+					<% _.each(gastos, function(gasto) { %>
+					<tr>
+						<td><%=gasto.tipo%></td>
+						<td><%=gasto.descripcion%></td>
+						<td><%=gasto.valor%></td>
+						<td><%=gasto.fechaIngreso%></td>
+						<td><%=gasto.fechaCancelado%></td>
+						<td><%=gasto.estado%></td>
+						<td>
+							<a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+						</td>
+						<td>
+							<a href="/gasto/update/<%=gasto.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+						</td>
+					<td>
+						<form action="/gasto/destroy/<%= gasto.id%>" method="POST" accept-charset="utf-8">
+							<input type="hidden" name="_method" value="delete"/>
+							<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+							<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+						</form>
+					</td>
+					</tr>
+		<%})%>
+	</table>
+	</div>
+			<a href="/contacto/index" class="btn btn-success btn-lg  pull-right">Atrás</a>
+		</div>
+	</div>
+</div>

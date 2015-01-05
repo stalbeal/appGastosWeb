@@ -18,7 +18,7 @@ module.exports = {
   		type:'string',
       required: true,
       enum: ['Sin Cancelar', 'Cancelado'] 
-  	}, fecha:{
+  	}, fechaIngreso:{
       type:'string',
       required:true
     },fechaCancelado:{
@@ -28,7 +28,9 @@ module.exports = {
       type:'string',
       required: true,
       enum: ['Comida', 'Pasajes Paula', 'Prestamo']
-    }
+    },usuario:{
+        model: 'Usuario'
+      }
 
   }
 };

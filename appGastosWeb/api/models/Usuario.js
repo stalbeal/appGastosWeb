@@ -8,14 +8,26 @@
 module.exports = {
 
   attributes: {
-  		usuario:{
+      nombre: {
+        type: 'string',
+        required: true
+      },usuario:{
   			type: 'string',
   			unique: true,
   			required: true
   		},contraseña:{
   			type:'string',
   			required:true
-  		}
-  }
+  		},gastos:{
+        collection: 'Gasto',
+        via: 'usuario'
+      },giros:{
+        collection: 'Giro',
+        via: 'usuario'
+      },facturas:{
+        collection: 'Factura',
+        via: 'usuario'
+      }
+    }
 };
 

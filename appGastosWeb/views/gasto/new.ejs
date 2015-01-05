@@ -3,6 +3,15 @@
 <br>
 <br>
 <div class="container">
+
+ <% if(flash && flash.err) { %>
+                        <ul class="alert alert-success">
+                            <% Object.keys(flash.err).forEach(function(error){ %>
+                            <li> <%- JSON.stringify(flash.err[error]) %></li>
+                            <% }) %>
+                        </ul>
+                        <% } %>
+                        
 	<div class="row clearfix">
 		<div class="col-md-8 col-md-offset-2">
 		

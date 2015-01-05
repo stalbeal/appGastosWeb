@@ -1,0 +1,72 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-10 col-md-offset-1">
+			<legend><h2>Detalles Gasto</h2></legend>
+			<div class="jumbotron" >
+				
+				<div class="row">
+					<div class="col-xs-3">
+						<p><strong>Ingresado por: </strong></p>
+					</div>
+					<div class="col-xs-9">
+						<p><%=gasto.nombre%></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-2">
+						<p><strong>Tipo </strong></p>
+					</div>
+					<div class="col-xs-10">
+						<p><%=gasto.tipo%></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-2">
+						<p><strong>Valor </strong></p>
+					</div>
+					<div class="col-xs-10">
+					<p><%=gasto.valor%></a></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<p><strong>Fecha Ingreso </strong></p>
+				</div>
+				<div class="col-xs-10">
+					<p><%=gasto.fechaIngreso%></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<p><strong>Fecha Cancelado </strong></p>
+				</div>
+				<div class="col-xs-10">
+					<p><%=gasto.fechaCancelado%></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<p><strong>Estado </strong></p>
+				</div>
+				<div class="col-xs-10">
+					<p><%=gasto.estado%></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<p><strong>Descripción  </strong></p>
+				</div>
+				<div class="col-xs-10">
+					<p><%=gasto.descripcion%></p>
+				</div>
+			</div>
+			
+		</div>
+		<a href="/contacto/index" class="btn btn-success btn-lg  pull-right">Editar</a>
+	</div>
+</div>
+</div>

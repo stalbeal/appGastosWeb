@@ -34,7 +34,9 @@ module.exports = {
   	},fechaCancelado:{
       type:'string',
       required:true
-    }
+    }, usuario:{
+        model: 'Usuario'
+      }
 
 
   }

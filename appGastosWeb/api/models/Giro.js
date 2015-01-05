@@ -19,7 +19,9 @@ module.exports = {
   		},fecha:{
   			type:'string',
   			required:true
-  		}
+  		}, usuario:{
+        model: 'Usuario'
+      }
 
   }
 };
