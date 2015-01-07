@@ -86,24 +86,35 @@ module.exports = {
         
         Gasto.update(req.param('id'), gasto, function gastoUpdated(err) {
             if (err) {
-                return next('err');
+                return next(err);
             }
-            return res.redirect('/gasto/show/' + req.param('id'));
+            return res.redirect('/gasto/show' + req.param('id'));
         });
     }, updatestate: function (req, res, next){
         
         var gasto={
             
-            estado: req.param('estado'),           
+            estado: "Cancelado",           
             fechaCancelado: sails.date()
            
         }
         
         Gasto.update(req.param('id'), gasto, function gastoUpdated(err) {
             if (err) {
-                return next('err');
+                return next(err);
+                console.log(err);
             }
             return res.redirect('/usuario/history' );
+        });
+    }, index: function(req, res, next) {
+        Gasto.find(function gastoFounded(err, gastos) {
+            if (err) {
+                console.log(err); //
+                return;
+            }
+            return res.view({
+                gastos: gastos
+            });
         });
     }
 };

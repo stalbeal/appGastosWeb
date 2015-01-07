@@ -32,7 +32,7 @@
 							<label for="valor">Valor Total</label>
 						</div>
 						<div class="col-xs-3">
-							<input type="number" class="form-control" id="valor" name="valor" placeholder="<%=gasto.valor%>" required/>
+							<input type="number" class="form-control" id="valor" name="valor" value="<%=gasto.valor%>" required/>
 						</div>
 						
 					</div>
@@ -53,7 +53,7 @@
 					
 					
 					<div class="form-group">
-						<label for="description">Descripción</label><textarea type="text" class="form-control" id="descripcion" name="descripcion" rows="4" style="resize: none" placeholder="<%=gasto.descripcion%>"required> </textarea>
+						<label for="description">Descripción</label><textarea type="text" class="form-control" id="descripcion" name="descripcion" rows="4" style="resize: none" value="<%=gasto.descripcion%>"required> </textarea>
 					</div>
 					<button type="submit" class="btn btn-success btn-lg  pull-right" >Enviar</button>
 					<br>

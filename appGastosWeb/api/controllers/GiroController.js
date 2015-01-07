@@ -21,15 +21,22 @@ module.exports = {
         Saldo.findOne('54ac9015bbda1e91a811927a', function saldoEncontrado (err, resultado) {
            if (err)
                 return next(err);
-        })
+
+            
         var saldo={
-            saldo:resultado+req.param('valor')
+            saldo:resultado.saldo+req.param('valor')
         }
+
         Saldo.update('54ac9015bbda1e91a811927a', saldo, function saldoUpdated(err) {
             if (err) {
                 return next('err');
             }
         });
+
+        });
+
+        
+        
 
         Giro.create(giro, function usuarioCreado(err, giro) {
             if (err) {
@@ -60,6 +67,16 @@ module.exports = {
             });
         });
 
+        });
+    },index: function(req, res, next) {
+        Giro.find(function giroFounded(err, giros) {
+            if (err) {
+                console.log(err); //
+                return;
+            }
+            return res.view({
+                giros: giros
+            });
         });
     }
 };

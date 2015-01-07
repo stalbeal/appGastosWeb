@@ -50,22 +50,24 @@
 						<td><%=factura.valor%></td>
 						<td><%=factura.Estado%></td>
 						<td>
-							<a href="/factura/show/<%=factura.id%>" class="btn btn-success btn-sm ">Detalles</a>
-						</td>
-						<td>
-							<a href="/factura/updatestate/<%=factura.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
-						</td>
+							<center><a href="/factura/show/<%=factura.id%>" class="btn btn-success btn-sm ">Detalles</a>
 						
+							<a href="/factura/updatestate/<%=factura.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+						
+						</center>
+						</td>
 					</tr>
 					<%})%>
 				</table>
-				</div>
+				<a href="/factura/index" class="btn btn-success2 btn-sm pull-right ">Ver Todo</a>
+				
+				
 			
 			
 			
 				<legend><h2>Historial Gastos</h2></legend>
 				
-					<div class="col-sm-12" style="overflow: auto; height: 300px;">
+					
 					<table class="table table-hover" >
 					<th>Tipo</th>
 					<th>Descripcion</th>
@@ -84,17 +86,22 @@
 						<td><%=gasto.fechaCancelado%></td>
 						<td><%=gasto.estado%></td>
 						<td>
-							<a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+						<center><a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+							
 						
 							<a href="/gasto/updatestate/<%=gasto.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+							</center>
 						</td>
+						
 						
 					</tr>
 					<%})%>
 				</table>
+				<a href="/gasto/index" class="btn btn-success2 btn-sm pull-right ">Ver Todo</a>
+				
 
 
-			</div>
+			
 
 			<legend><h2>Historial Giros</h2></legend>
 				<table class="table table-hover" >
@@ -113,15 +120,17 @@
 						<td><%=giro.descripcion%></td>
 						
 						<td>
-							<a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+							<center><a href="/giro/show/<%=giro.id%>" class="btn btn-success btn-sm ">Detalles</a>
+							</center>
 						</td>
 						
 						
 					</tr>
 					<%})%>
 				</table>
-				</div>
+				<a href="/giro/index" class="btn btn-success2 btn-sm pull-right ">Ver Todo</a>
+				
 			
-		</div>
+		
 	</div>
 </div>

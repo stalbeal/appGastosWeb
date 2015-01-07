@@ -1,0 +1,32 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<legend><h2>Historial Giros</h2></legend>
+				<table class="table table-hover" >
+					<th>Referencia</th>
+					<th>Fecha</th>
+					<th>Valor</th>
+					<th>Descripcion</th>
+					
+					<th class="text-center">Acciones</th>
+
+					<% _.each(giros, function(giro) { %>
+					<tr>
+						<td><%=giro.codigo%></td>
+						<td><%=giro.fecha%></td>
+						<td><%=giro.valor%></td>
+						<td><%=giro.descripcion%></td>
+						
+						<td>
+							<center><a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+							</center>
+						</td>
+						
+						
+					</tr>
+					<%})%>
+				</table>
+				<a href="/usuario/history" class="btn btn-success2 btn-sm pull-right ">Atrás</a>
+</div>

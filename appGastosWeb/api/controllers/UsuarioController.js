@@ -35,6 +35,7 @@ module.exports = {
 
         Factura.find()
         .sort({ createdAt: 'desc' })
+        .limit(5)
         .exec(function(err, facturas) {
             if (err) {
                 
@@ -43,6 +44,7 @@ module.exports = {
             console.log(facturas);
             Gasto.find()
             .sort({ createdAt: 'desc' })
+            .limit(5)
             .exec(function(err, gastos) {
 
                 if (err) {
@@ -52,6 +54,7 @@ module.exports = {
 
                 Giro.find()
                 .sort({ createdAt: 'desc' })
+                .limit(5)
                 .exec(function(err, giros) {
                     if (err) {
                         

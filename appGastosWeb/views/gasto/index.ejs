@@ -1,0 +1,42 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<legend><h2>Historial Gastos</h2></legend>
+
+								
+					<table class="table table-hover" >
+					<th>Tipo</th>
+					<th>Descripcion</th>
+					<th>Valor</th>
+					<th>Fecha</th>
+					<th>Fecha Cancelado</th>
+					<th>Estado</th>
+					
+					
+					<th colspan="0" class="text-center">Acciones</th>
+
+					<% _.each(gastos, function(gasto) { %>
+					<tr>
+						<td><%=gasto.tipo%></td>
+						<td><%=gasto.descripcion%></td>
+						<td><%=gasto.valor%></td>
+						<td><%=gasto.fechaIngreso%></td>
+						<td><%=gasto.fechaCancelado%></td>
+						<td><%=gasto.estado%></td>
+						<td>
+							<center><a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+							
+						
+							<a href="/gasto/updatestate/<%=gasto.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+							</center>
+						</td>
+						
+					</tr>
+					<%})%>
+				</table>
+
+				<a href="/usuario/history" class="btn btn-success2 btn-sm pull-right ">Atrás</a>
+				
+</div>

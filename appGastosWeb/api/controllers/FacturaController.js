@@ -60,14 +60,14 @@ module.exports = {
         
         var factura={
             
-            estado: req.param('estado'),           
+            estado: "Cancelado",           
             fechaCancelado: sails.date()
            
         }
         
         Factura.update(req.param('id'), factura, function facturaUpdated(err) {
             if (err) {
-                return next('err');
+                return next(err);
             }
             return res.redirect('/usuario/history' );
         });
@@ -93,7 +93,7 @@ module.exports = {
             descripcion: req.param('descripcion'),
             valor: req.param('valor'),
             estado: req.param('estado'),
-            fechaPago: sreq.param('fechaPago'),
+            fechaPago: req.param('fechaPago'),
             fechaLimite:req.param('fechaLimite'),
             fechaCancelado: fechaCan,
             tipo: req.param('tipo'),
@@ -104,9 +104,19 @@ module.exports = {
         
         Factura.update(req.param('id'), factura, function facturaUpdated(err) {
             if (err) {
-                return next('err');
+                return next(err);
             }
             return res.redirect('/factura/show/' + req.param('id'));
+        });
+    },index: function(req, res, next) {
+        Factura.find(function facturaFounded(err, facturas) {
+            if (err) {
+                console.log(err); //
+                return;
+            }
+            return res.view({
+                facturas: facturas
+            });
         });
     }
 };
