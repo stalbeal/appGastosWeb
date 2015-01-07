@@ -40,8 +40,12 @@ module.exports = {
             }
 
             console.log(user.contraseña);
+             console.log(user.encryptedPassword);
 
-                if (contrasena!==user.contraseña) {
+            bcrypt.compare(contrasena,user.encryptedPassword, function passwordsMatch(err, valid) {
+                if (err)
+                    return next(err);
+                if (!valid) {
                     var contrasenaErronea = [{
                         mensaje: 'La contraseña no coincide'
                     }]
@@ -50,19 +54,26 @@ module.exports = {
                     }
                     return res.redirect('/session/login');
                 }
-
-                req.session.Usuario=user;
-                
+                req.session.Usuario = user;
+                req.session.authenticated= true;
                 return res.redirect('/usuario/history');
 
 
-            
+            });
+
+
+
+
+
 
         });
 
 
 
 
+    }, destroy: function (req, res, next) {
+       req.session.destroy();
+        res.redirect('session/login');
     }
 
 };
