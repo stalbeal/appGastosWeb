@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -41,9 +39,8 @@
       
     </head>
     <body>
-
-    
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      
+      <nav class="navbar navbar-default " role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -54,7 +51,7 @@
             </button>
             <a class="navbar-brand " href="/"><img src="/images/logo.png" width="40" height="30"> </a>
           </div>
-         <!--<% if(!session.authenticated){ %>-->
+          <% if(!session.authenticated){ %>
           <div class="collapse navbar-collapse navbar-ex1-collapse ">
             <ul class="nav navbar-nav">
               <li >
@@ -71,129 +68,102 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            <li> <a href="/session/new"  >Inciar Sesión</a></li>
-            </ul> 
-    
-           
-           <!-- <%}%>
-            <% if(session.authenticated){ %>-->
-
-
+              <li> <a href="/session/login"  >Inciar Sesión</a></li>
+            </ul>
+            <%}%>
+            <% if(session.authenticated){%>
             <ul class="nav navbar-nav">
+              <li >
+                <a href="/usuario/history">Inicio</a>
+              </li>
+              <li>
+                <a href="/gastos/index">Gastos</a>
+              </li>
+              <li>
+                <a href="/factura/index">Facturas</a>
+              </li>
+              <li>
+                <a href="/giro/index">Contacto</a>
+              </li>
+              <% if(session.Usuario.tipo==='admin'){%>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inicio<strong class="caret"></strong></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario<strong class="caret"></strong></a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="/">Ver</a>
+                    <a href="/usuario/new">Crear</a>
                   </li>
                   <li>
-                    <a href="/homepage/edit">Editar</a>
+                    <a href="/usuario/">Ver Todos</a>
                   </li>
                 </ul>
               </li>
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Planes<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="/planes/show">Ver</a>
-                  </li>
-                  <li>
-                    <a href="/planes/edit">Editar</a>
-                  </li>
-                </ul>
-              </li>
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guardería<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="/guarderia/show">Ver</a>
-                  </li>
-                  <li>
-                    <a href="/guarderia/edit">Editar</a>
-                  </li>
-                </ul>
-              </li>
-               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contacto<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="/contacto/index">Registros</a>
-                  </li>
-                </ul>
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administradores<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="/user/new">Registrar</a>
-                  </li>
-                  
-                </ul>
-              </li>
+              <%}%>
             </ul>
             <div class="navbar-right">
               <ul class="nav navbar-nav navbar-right">
-              <li> <a href="/session/destroy"  >Cerrar Sesión</a></li>
+                <li> <a href="/session/destroy"  >Cerrar Sesión</a></li>
               </ul>
             </div>
-            <!--<%}%>-->
+            <%}%>
           </div>
         </div>
         
       </nav>
       <div id="wrapper">
-      <%- body %>
-      
-      <!--
-      Client-side Templates
-      ========================
-      HTML templates are important prerequisites of modern, rich client applications.
-      To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
-      that you load these templates client-side.
-      By default, your Gruntfile is configured to automatically load and precompile
-      client-side JST templates in your `assets/templates` folder, then
-      include them here automatically (between TEMPLATES and TEMPLATES END).
-      To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
-      + Import templates from other directories
-      + Use a different template engine (handlebars, jade, dust, etc.)
-      + Internationalize your client-side templates using a server-side
-      stringfile before they're served.
-      -->
-      <!--TEMPLATES-->
-      
-      <!--TEMPLATES END-->
-      <!--
-      Client-side Javascript
-      ========================
-      You can always bring in JS files manually with `script` tags, or asynchronously
-      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
-      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
-      By default, files in your `assets/js` folder are included here
-      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
-      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
-      and concatenated into a single file.
-      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
-      + Change the order of your scripts
-      + Import scripts from other directories
-      + Use a different preprocessor, like TypeScript
-      -->
-      
-      
-      
-      <!--SCRIPTS-->
-      <script src="/js/dependencies/sails.io.js"></script>
-      <script src="/js/dependencies/jquery-1.11.1.min.js"></script>
-      <script src="/js/bootstrap.js"></script>
-      <script src="/js/bootstrap.min.js"></script>
-      <!--SCRIPTS END-->
-    </body>
-    <div id="footContainer">
+        <%- body %>
+        
+        <!--
+        Client-side Templates
+        ========================
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+        that you load these templates client-side.
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+        + Import templates from other directories
+        + Use a different template engine (handlebars, jade, dust, etc.)
+        + Internationalize your client-side templates using a server-side
+        stringfile before they're served.
+        -->
+        <!--TEMPLATES-->
+        
+        <!--TEMPLATES END-->
+        <!--
+        Client-side Javascript
+        ========================
+        You can always bring in JS files manually with `script` tags, or asynchronously
+        on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+        take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+        By default, files in your `assets/js` folder are included here
+        automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+        CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+        and concatenated into a single file.
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+        + Change the order of your scripts
+        + Import scripts from other directories
+        + Use a different preprocessor, like TypeScript
+        -->
+        
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <!--SCRIPTS-->
+        <script src="/js/dependencies/sails.io.js"></script>
+        <script src="/js/dependencies/jquery-1.11.1.min.js"></script>
+        <script src="/js/bootstrap.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <!--SCRIPTS END-->
+      </body>
+      <div id="footContainer">
         <div class="container">
           <div class="row">
             <br><br>
             <div class="col-md-4">
-            
+              
               <img src="/images/logo.png" width="200" height="200" >
               
             </div>
@@ -205,21 +175,21 @@
               <a href="https://twitter.com/stalbeal"><img src="/images/twt.png" ></a>
               <a href="https://google.com/+StephanyB10"><img src="/images/gplus.png" ></a>
               <br><br><br><br>
-              <p class="white">Powered by Stephany</a></p>
-              
-              
-              </center>
-            </div>
-            <div class="col-md-4">
-              <center>
-              <h2 class="h2blanco">Contacto</h2>
-              <p class="lead2"><strong>Móvil : </strong> 305 262 04 15</p>
-              <p class="lead2"><strong>Correo: </strong><a href="mailto:stalbeal10@gmail.com">stalbeal10@gmail.com</a> </p>
-              </center>
-            </div>
+            <p class="white">Powered by Stephany</a></p>
             
+            
+            </center>
           </div>
+          <div class="col-md-4">
+            <center>
+            <h2 class="h2blanco">Contacto</h2>
+            <p class="lead2"><strong>Móvil : </strong> 305 262 04 15</p>
+            <p class="lead2"><strong>Correo: </strong><a href="mailto:stalbeal10@gmail.com">stalbeal10@gmail.com</a> </p>
+            </center>
+          </div>
+          
         </div>
       </div>
-      </div>
-  </html>
+    </div>
+  </div>
+</html>

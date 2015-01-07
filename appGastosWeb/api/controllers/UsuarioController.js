@@ -6,17 +6,19 @@
  */
 
 module.exports = {
-	new: function(req, res, next) {
+    new: function(req, res, next) {
         res.view();
     },
     login: function(req, res, next) {
         res.view();
     },
     create: function(req, res, next) {
-        var user={
-            nombre:req.param('nombre'),
-           	usuario: req.param('usuario'),
-            contraseña: req.param('contraseña')
+        var user = {
+            nombre: req.param('nombre'),
+            usuario: req.param('usuario'),
+            contraseña: req.param('contraseña'),
+            confirmacionContrasena:req.param('confirmacionContrasena'),
+            tipo:req.param('tipo')
         }
 
         Usuario.create(user, function usuarioCreated(err, user) {
@@ -27,55 +29,80 @@ module.exports = {
                 }
                 return res.redirect('/usuario/new')
             }
-            return res.redirect('/usuario/history/' + user.id);
+
+            Saldo.count(function saldoCounted (err, count) {
+                if (err)
+                    return next(err);
+                console.log('cuenta '+count);
+                if (count > 0)
+                    return res.redirect('/usuario/history/' + user.id);
+                saldo = {
+                    saldo: 0
+                }
+                Saldo.create(saldo, function saldoCreated(err, saldo) {
+                    if (err)
+                        return next(err);
+
+                    return res.redirect('/usuario/history/' + user.id);
+                });
+
+            });
+
 
         });
     },
     history: function(req, res, next) {
 
         Factura.find()
-        .sort({ createdAt: 'desc' })
-        .exec(function(err, facturas) {
-            if (err) {
-                
-                return next(err); 
-            }
-            console.log(facturas);
-            Gasto.find()
-            .sort({ createdAt: 'desc' })
-            .exec(function(err, gastos) {
-
+            .sort({
+                createdAt: 'desc'
+            })
+            .exec(function(err, facturas) {
                 if (err) {
-                   
+
                     return next(err);
                 }
+                console.log(facturas);
+                Gasto.find()
+                    .sort({
+                        createdAt: 'desc'
+                    })
+                    .exec(function(err, gastos) {
 
-                Giro.find()
-                .sort({ createdAt: 'desc' })
-                .exec(function(err, giros) {
-                    if (err) {
-                        
-                        return next(err); 
-                    }
+                        if (err) {
 
-                    Saldo.findOne('54ac9015bbda1e91a811927a', function gastoFounded(err, saldo) {
-                        if (err)
                             return next(err);
+                        }
 
-                    res.view({
+                        Giro.find()
+                            .sort({
+                                createdAt: 'desc'
+                            })
+                            .exec(function(err, giros) {
+                                if (err) {
 
-                        facturas: facturas,
-                        gastos: gastos,
-                        giros: giros,
-                        saldo:saldo
+                                    return next(err);
+                                }
+
+                                Saldo.find().limit(1).exec(function saldoFounded (err, saldos) {
+                                    // body...
+                                
+                                    if (err)
+                                        return next(err);
+
+                                    res.view({
+                                        facturas: facturas,
+                                        gastos: gastos,
+                                        giros: giros,
+                                        saldo: saldos[0]
+                                    });
+
+                                });
+
+                            });
                     });
 
-                });
-
-                });
             });
-
-        });
     }
 
 };
