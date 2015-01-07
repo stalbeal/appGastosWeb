@@ -14,7 +14,8 @@ module.exports = {
     },
     create: function(req, res, next) {
         var user={
-           	usuario: req.param('nombre'),
+            nombre:req.param('nombre'),
+           	usuario: req.param('usuario'),
             contraseña: req.param('contraseña')
         }
 
@@ -32,29 +33,44 @@ module.exports = {
     },
     history: function(req, res, next) {
 
-        Factura.find(function facturaFounded(err, facturas) {
+        Factura.find()
+        .sort({ createdAt: 'desc' })
+        .exec(function(err, facturas) {
             if (err) {
-                console.log(err); //
-                return;
+                
+                return next(err); 
             }
             console.log(facturas);
-            Gastos.find(function gastosFounded(err, gastos) {
+            Gasto.find()
+            .sort({ createdAt: 'desc' })
+            .exec(function(err, gastos) {
+
                 if (err) {
-                    console.log(err); //
-                    return;
+                   
+                    return next(err);
                 }
-                Giros.find(function clienteFounded(err, giros) {
+
+                Giro.find()
+                .sort({ createdAt: 'desc' })
+                .exec(function(err, giros) {
                     if (err) {
-                        console.log(err); //
-                        return;
+                        
+                        return next(err); 
                     }
+
+                    Saldo.findOne('54ac9015bbda1e91a811927a', function gastoFounded(err, saldo) {
+                        if (err)
+                            return next(err);
 
                     res.view({
 
                         facturas: facturas,
                         gastos: gastos,
-                        giros: giros
+                        giros: giros,
+                        saldo:saldo
                     });
+
+                });
 
                 });
             });

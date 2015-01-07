@@ -12,21 +12,20 @@ module.exports = {
         res.view();
 
 	},create: function(req, res, next) {
-	var x = new Date();
-    var day = x.getDate();
-    var month = x.getMonth() + 1;
-    var hour = x.getHours();
-    var year = x.getFullYear();
-    var minuts = x.getMinutes();
-    var date = day + '/' + month + '/' + year + ' ' + hour + ':' + minuts;
+	   var fechaCan;
+        if (req.param('estado')=== 'Cancelado') {
+            fechaCan= sails.date();
+        }else{
+            fechaCan='N/A             ';
+        }
         var gasto={
-           	descripcion: req.param('descripcion'),
+            descripcion: req.param('descripcion'),
             valor: req.param('valor'),
             estado: req.param('estado'),
-            fechaIngreso: date,
-            fechaCancelado: 'N/A',
+            fechaIngreso: sails.date(),
+            fechaCancelado: fechaCan,
             tipo: req.param('tipo'),
-            usuario:req.session.Usuario.usuario
+            usuario:req.session.Usuario.id
         }
 
         Gasto.create(gasto, function usuarioCreated(err, gasto) {
@@ -44,10 +43,67 @@ module.exports = {
         Gasto.findOne(req.param('id'), function gastoFounded(err, gasto) {
             if (err)
                 return next(err);
+
+
+        Usuario.findOne(gasto.usuario, function usuarioGasto (err, usuario) {
+            if (err)
+                return next(err);
             res.view({
+                gasto: gasto,
+                usuario:usuario
+            });
+        });
+            
+
+        });
+    }, edit: function  (req, res, next) {
+        
+        Gasto.findOne(req.param('id'), function gastoEncontrado (err, gasto) {
+             if (err) {
+                return next(err);
+            }
+            
+            return res.view({
                 gasto: gasto
             });
-
+        });
+    }, update: function (req, res, next){
+        var fechaCan;
+        if (req.param('estado')=== 'Cancelado') {
+            fechaCan= sails.date();
+        }else{
+            fechaCan='N/A';
+        }
+        var gasto={
+            descripcion: req.param('descripcion'),
+            valor: req.param('valor'),
+            estado: req.param('estado'),
+            fechaIngreso: sails.date(),
+            fechaCancelado: fechaCan,
+            tipo: req.param('tipo'),
+            usuario:req.session.Usuario.id
+        }
+        
+        Gasto.update(req.param('id'), gasto, function gastoUpdated(err) {
+            if (err) {
+                return next('err');
+            }
+            return res.redirect('/gasto/show/' + req.param('id'));
+        });
+    }, updatestate: function (req, res, next){
+        
+        var gasto={
+            
+            estado: req.param('estado'),           
+            fechaCancelado: sails.date()
+           
+        }
+        
+        Gasto.update(req.param('id'), gasto, function gastoUpdated(err) {
+            if (err) {
+                return next('err');
+            }
+            return res.redirect('/usuario/history' );
         });
     }
 };

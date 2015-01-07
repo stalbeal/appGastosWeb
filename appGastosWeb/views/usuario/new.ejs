@@ -3,12 +3,14 @@
 
 <form action="/usuario/create" method="POST" class="form-signin">
 		
+	    <label for="user">Nombre</label>
+		<input type="text" class="form-control" name="nombre" placeholder="Nombre">
 	    <label for="user">Usuario</label>
-		<input type="text" class="form-control" name="nombre" placeholder="Usuario">
+		<input type="text" class="form-control" name="usuario" placeholder="Usuario">
 	    <label for="psw">Contraseña</label>
 		<input type="password" class="form-control" name="contraseña" placeholder="Contraseña">
 		<br>
-		<button type="submit" class="btn btn-success btn-lg  pull-right" >Iniciar sesión</button>
+		<button type="submit" class="btn btn-success btn-lg  pull-right" >Guardar</button>
 		<input type="hidden" value="<%= _csrf %>">
 		<br><br>
 						</form>

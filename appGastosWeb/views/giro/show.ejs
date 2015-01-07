@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-10 col-md-offset-1">
-			<legend><h2>Detalles Gasto</h2></legend>
+			<legend><h2>Detalles Giro</h2></legend>
 			<div class="jumbotron" >
 				
 				<div class="row">
@@ -18,10 +18,10 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-3">
-						<p><strong>Tipo </strong></p>
+						<p><strong>Codigo/Referencia </strong></p>
 					</div>
 					<div class="col-xs-9">
-						<p><%=gasto.tipo%></p>
+						<p><%=giro.codigo%></p>
 					</div>
 				</div>
 				<div class="row">
@@ -29,7 +29,7 @@
 						<p><strong>Valor </strong></p>
 					</div>
 					<div class="col-xs-9">
-					<p><%=gasto.valor%></a></p>
+					<p><%=giro.valor%></a></p>
 				</div>
 			</div>
 			<div class="row">
@@ -37,36 +37,21 @@
 					<p><strong>Fecha Ingreso </strong></p>
 				</div>
 				<div class="col-xs-9">
-					<p><%=gasto.fechaIngreso%></p>
+					<p><%=giro.fecha%></p>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-3">
-					<p><strong>Fecha Cancelado </strong></p>
-				</div>
-				<div class="col-xs-9">
-					<p><%=gasto.fechaCancelado%></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-3">
-					<p><strong>Estado </strong></p>
-				</div>
-				<div class="col-xs-9">
-					<p><%=gasto.estado%></p>
-				</div>
-			</div>
+			
 			<div class="row">
 				<div class="col-xs-3">
 					<p><strong>Descripción  </strong></p>
 				</div>
 				<div class="col-xs-9">
-					<p><%=gasto.descripcion%></p>
+					<p><%=giro.descripcion%></p>
 				</div>
 			</div>
 			
 		</div>
-		<a href="/gasto/edit/<%=gasto.id%>" class="btn btn-success btn-lg  pull-right">Editar</a>
+		<a href="/giro/edit/<%=giro.id%>" class="btn btn-success btn-lg  pull-right">Editar</a>
 	</div>
 </div>
 </div>

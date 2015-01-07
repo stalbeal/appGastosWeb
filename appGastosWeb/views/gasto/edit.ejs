@@ -14,9 +14,9 @@
 	<div class="row clearfix">
 		<div class="col-md-8 col-md-offset-2">
 			
-			<legend><h2>Agregar Información de un Gasto</h2></legend>
+			<legend><h2>Editar Información de un Gasto</h2></legend>
 			<div class="jumbotron" >
-				<form role="form" action="/gasto/create" method="POST">
+				<form role="form" action="/gasto/update/<%=gasto.id%>" method="POST">
 					<div class="row">
 						<div class="col-xs-3">
 							<label for="tipo">Tipo</label>
@@ -32,7 +32,7 @@
 							<label for="valor">Valor Total</label>
 						</div>
 						<div class="col-xs-3">
-							<input type="number" class="form-control" id="valor" name="valor" required/>
+							<input type="number" class="form-control" id="valor" name="valor" placeholder="<%=gasto.valor%>" required/>
 						</div>
 						
 					</div>
@@ -53,7 +53,7 @@
 					
 					
 					<div class="form-group">
-						<label for="description">Descripción</label><textarea type="text" class="form-control" id="descripcion" name="descripcion" rows="4" style="resize: none"> </textarea>
+						<label for="description">Descripción</label><textarea type="text" class="form-control" id="descripcion" name="descripcion" rows="4" style="resize: none" placeholder="<%=gasto.descripcion%>"required> </textarea>
 					</div>
 					<button type="submit" class="btn btn-success btn-lg  pull-right" >Enviar</button>
 					<br>

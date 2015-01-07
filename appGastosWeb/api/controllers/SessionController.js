@@ -53,7 +53,7 @@ module.exports = {
 
                 req.session.Usuario=user;
                 
-                return res.redirect('/gasto/new');
+                return res.redirect('/usuario/history');
 
 
             

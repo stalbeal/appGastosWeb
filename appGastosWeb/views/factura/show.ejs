@@ -5,61 +5,68 @@
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-10 col-md-offset-1">
-			<legend><h2>Detalles Contacto</h2></legend>
+			<legend><h2>Detalles factura</h2></legend>
 			<div class="jumbotron" >
-
-			
-					<div class="row">
-						<div class="col-xs-2">
-							<p><strong>Nombre </strong></p>
-						</div>
-						<div class="col-xs-10">
-							<p><%=contact.name%><%=contact.lastname%></p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-2">
-							<p><strong>Email </strong></p>
-						</div>
-						<div class="col-xs-10">
-							<p><a href="mailto:<p><%=contact.email%></p>"><%=contact.email%></a></p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-2">
-							<p><strong>Ciudad </strong></p>
-						</div>
-						<div class="col-xs-10">
-							<p><%=contact.city%></p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-2">
-							<p><strong>Teléfono </strong></p>
-						</div>
-						<div class="col-xs-10">
-							<p><%=contact.phone%></p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-2">
-							<p><strong>Celular </strong></p>
-						</div>
-						<div class="col-xs-10">
-							<p><%=contact.mobile%></p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-2">
-							<p><strong>Descripción  </strong></p>
-						</div>
-						<div class="col-xs-10">
-							<p><%=contact.description%></p>
-						</div>
-					</div>
 				
+				<div class="row">
+					<div class="col-xs-3">
+						<p><strong>Ingresado por: </strong></p>
+					</div>
+					<div class="col-xs-9">
+						<p><%=usuario.nombre%></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3">
+						<p><strong>Tipo </strong></p>
+					</div>
+					<div class="col-xs-9">
+						<p><%=factura.tipo%></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3">
+						<p><strong>Valor </strong></p>
+					</div>
+					<div class="col-xs-9">
+					<p><%=factura.valor%></a></p>
+				</div>
 			</div>
-			<a href="/contacto/index" class="btn btn-success btn-lg  pull-right">Atrás</a>
+			<div class="row">
+				<div class="col-xs-3">
+					<p><strong>Fecha Ingreso </strong></p>
+				</div>
+				<div class="col-xs-9">
+					<p><%=factura.fechaIngreso%></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+					<p><strong>Fecha Cancelado </strong></p>
+				</div>
+				<div class="col-xs-9">
+					<p><%=factura.fechaCancelado%></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+					<p><strong>Estado </strong></p>
+				</div>
+				<div class="col-xs-9">
+					<p><%=factura.estado%></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+					<p><strong>Descripción  </strong></p>
+				</div>
+				<div class="col-xs-9">
+					<p><%=factura.descripcion%></p>
+				</div>
+			</div>
+			
 		</div>
+		<a href="/factura/edit/<%=factura.id%>" class="btn btn-success btn-lg  pull-right">Editar</a>
 	</div>
+</div>
 </div>
