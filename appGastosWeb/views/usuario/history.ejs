@@ -11,8 +11,6 @@
 				<th>Fecha</th>
 				
 				<th>Saldo Restante</th>
-				
-				
 				<tr>
 					<td>
 					<script type="text/javascript">
@@ -24,14 +22,10 @@
 						document.write(d.getDate(),'/'+mes[d.getMonth()],'/'+d.getFullYear());
 					</script>
 					</td>
-					
 					<td><%=saldo.saldo%></td>
-					
 				</tr>
 				</table>
 				<legend><h2>Historial Facturas</h2></legend>
-
-				
 				<table class="table table-hover" >
 					<th>Factura</th>
 					<th>Fecha Pago</th>
@@ -60,11 +54,6 @@
 					<%})%>
 				</table>
 				<a href="/factura/index" class="btn btn-success2 btn-sm pull-right ">Ver Todo</a>
-				
-				
-			
-			
-			
 				<legend><h2>Historial Gastos</h2></legend>
 				
 					
@@ -98,11 +87,6 @@
 					<%})%>
 				</table>
 				<a href="/gasto/index" class="btn btn-success2 btn-sm pull-right ">Ver Todo</a>
-				
-
-
-			
-
 			<legend><h2>Historial Giros</h2></legend>
 				<table class="table table-hover" >
 					<th>Referencia</th>
@@ -129,8 +113,5 @@
 					<%})%>
 				</table>
 				<a href="/giro/index" class="btn btn-success2 btn-sm pull-right ">Ver Todo</a>
-				
-			
-		
 	</div>
 </div>

@@ -88,7 +88,7 @@ module.exports = {
             if (err) {
                 return next(err);
             }
-            return res.redirect('/gasto/show' + req.param('id'));
+            return res.redirect('/gasto/show/' + req.param('id'));
         });
     }, updatestate: function (req, res, next){
         

@@ -1,9 +1,9 @@
-
 module.exports= function (req, res,ok) {
-	if(req.session.authenticated){
+	if(req.session.Usuario && req.session.Usuario.tipo=='admin'){
 		return ok();
 	}
-	var requireLoginError=[{name:'requireLogin', message:'Debes Iniciar Sesion'}]
+	var requireLoginError=[{message:'Debes ser Administrador para realizar esta accion'}]
+
 	req.session.flash={
 		err: requireLoginError
 	}

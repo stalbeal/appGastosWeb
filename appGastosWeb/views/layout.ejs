@@ -53,20 +53,6 @@
           </div>
           <% if(!session.authenticated){ %>
           <div class="collapse navbar-collapse navbar-ex1-collapse ">
-            <ul class="nav navbar-nav">
-              <li >
-                <a href="/usuario/history">Inicio</a>
-              </li>
-              <li>
-                <a href="/gasto/index">Gastos</a>
-              </li>
-              <li>
-                <a href="/factura/index">Facturas</a>
-              </li>
-              <li>
-                <a href="/giro/index">Contacto</a>
-              </li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
               <li> <a href="/session/login"  >Inciar Sesión</a></li>
             </ul>
@@ -76,16 +62,84 @@
               <li >
                 <a href="/usuario/history">Inicio</a>
               </li>
-              <li>
-                <a href="/gastos/index">Gastos</a>
+              <%if(session.Usuario.tipo==='tipo1'){%>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gastos<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/gasto/new">Crear</a>
+                  </li>
+                  <li>
+                    <a href="/gasto/index">Ver Todos</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Facturas<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/factura/new">Crear</a>
+                  </li>
+                  <li>
+                    <a href="/factura/index">Ver Todos</a>
+                  </li>
+                </ul>
               </li>
               <li>
-                <a href="/factura/index">Facturas</a>
+                <a href="/giro">Giros</a>
+              </li>
+              <%} else if(session.Usuario.tipo==='tipo2'){%>
+               <li>
+                <a href="/gasto">Gastos</a>
               </li>
               <li>
-                <a href="/giro/index">Contacto</a>
+                <a href="/factura">Facturas</a>
               </li>
-              <% if(session.Usuario.tipo==='admin'){%>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Giro<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/giro/new">Crear</a>
+                  </li>
+                  <li>
+                    <a href="/giro">Ver Todos</a>
+                  </li>
+                </ul>
+              </li>
+              <%} else if(session.Usuario.tipo==='admin'){%>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gastos<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/gasto/new">Crear</a>
+                  </li>
+                  <li>
+                    <a href="/gasto/index">Ver Todos</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Facturas<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/factura/new">Crear</a>
+                  </li>
+                  <li>
+                    <a href="/factura/index">Ver Todos</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Giro<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/giro/new">Crear</a>
+                  </li>
+                  <li>
+                    <a href="/giro">Ver Todos</a>
+                  </li>
+                </ul>
+              </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario<strong class="caret"></strong></a>
                 <ul class="dropdown-menu">
@@ -109,7 +163,6 @@
         </div>
         
       </nav>
-      <div id="wrapper">
       <%- body %>
       
       <!--
@@ -147,9 +200,42 @@
       + Import scripts from other directories
       + Use a different preprocessor, like TypeScript
       -->
+      <div id="wrapper">
+        <div id="footContainer">
+          <div class="container">
+            <div class="row">
+              <br><br>
+              <div class="col-md-4">
+                
+                <img src="/images/logo2.png"  >
+                
+              </div>
+              
+              <div class="col-md-4">
+                <center>
+                <h3 class="h3blanco">Redes Sociales</h3>
+                <a href="http://fb.com/stephysba"><img src="/images/fb.png" ></a>
+                <a href="https://twitter.com/stalbeal"><img src="/images/twt.png" ></a>
+                <a href="https://google.com/+StephanyB10"><img src="/images/gplus.png" ></a>
+                <br><br><br><br>
+                <p class="white">Powered by Stephany</p>
+                </center>
+              </div>
+              <div class="col-md-4">
+                <center>
+                <h2 class="h2blanco">Contacto</h2>
+                <p class="lead2"><strong>Móvil : </strong> 305 262 04 15</p>
+                <p class="lead2"><strong>Correo: </strong><a href="mailto:stalbeal10@gmail.com">stalbeal10@gmail.com</a> </p>
+                </center>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
       
-      
-      
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
       <!--SCRIPTS-->
       <script src="/js/dependencies/sails.io.js"></script>
       <script src="/js/dependencies/jquery-1.11.1.min.js"></script>
@@ -157,88 +243,4 @@
       <script src="/js/bootstrap.min.js"></script>
       <!--SCRIPTS END-->
     </body>
-    <br>
-    <div id="footContainer">
-        <%- body %>
-        
-        <!--
-        Client-side Templates
-        ========================
-        HTML templates are important prerequisites of modern, rich client applications.
-        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
-        that you load these templates client-side.
-        By default, your Gruntfile is configured to automatically load and precompile
-        client-side JST templates in your `assets/templates` folder, then
-        include them here automatically (between TEMPLATES and TEMPLATES END).
-        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-        + Import templates from other directories
-        + Use a different template engine (handlebars, jade, dust, etc.)
-        + Internationalize your client-side templates using a server-side
-        stringfile before they're served.
-        -->
-        <!--TEMPLATES-->
-        
-        <!--TEMPLATES END-->
-        <!--
-        Client-side Javascript
-        ========================
-        You can always bring in JS files manually with `script` tags, or asynchronously
-        on the client using a solution like AMD (RequireJS).  Or, if you like, you can
-        take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
-        By default, files in your `assets/js` folder are included here
-        automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
-        CoffeeScript (.coffee) are supported. In production, your scripts will be minified
-        and concatenated into a single file.
-        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-        + Change the order of your scripts
-        + Import scripts from other directories
-        + Use a different preprocessor, like TypeScript
-        -->
-        
-        
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <!--SCRIPTS-->
-        <script src="/js/dependencies/sails.io.js"></script>
-        <script src="/js/dependencies/jquery-1.11.1.min.js"></script>
-        <script src="/js/bootstrap.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <!--SCRIPTS END-->
-      </body>
-      <div id="footContainer">
-        <div class="container">
-          <div class="row">
-            <br><br>
-            <div class="col-md-4">
-            
-              <img src="/images/logo2.png"  >              
-              
-            </div>
-            
-            <div class="col-md-4">
-              <center>
-              <h3 class="h3blanco">Redes Sociales</h3>
-              <a href="http://fb.com/stephysba"><img src="/images/fb.png" ></a>
-              <a href="https://twitter.com/stalbeal"><img src="/images/twt.png" ></a>
-              <a href="https://google.com/+StephanyB10"><img src="/images/gplus.png" ></a>
-              <br><br><br><br>
-            <p class="white">Powered by Stephany</a></p>
-            
-            
-            </center>
-          </div>
-          <div class="col-md-4">
-            <center>
-            <h2 class="h2blanco">Contacto</h2>
-            <p class="lead2"><strong>Móvil : </strong> 305 262 04 15</p>
-            <p class="lead2"><strong>Correo: </strong><a href="mailto:stalbeal10@gmail.com">stalbeal10@gmail.com</a> </p>
-            </center>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</html>
+  </html>

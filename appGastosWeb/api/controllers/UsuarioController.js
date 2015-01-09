@@ -43,7 +43,7 @@ module.exports = {
                     if (err)
                         return next(err);
 
-                    return res.redirect('/usuario/history/' + user.id);
+                    return res.redirect('/usuario/history/');
                 });
 
             });

@@ -27,6 +27,23 @@ module.exports.policies = {
   ***************************************************************************/
 
   '*': 'flash',
+  'usuario':{
+    history:'authenticated',
+    '*':'admin&flash'
+  },
+  'gasto':{
+    show:'authenticated',
+    index:'authenticated',
+    '*':'tipo1&flash'
+  },'factura':{
+    show:'authenticated',
+    index:'authenticated',
+    '*':'tipo1&flash'
+  },'giro':{
+    show:'authenticated',
+    index:'authenticated',
+    '*':'tipo2&flash'
+  }
 
   /***************************************************************************
   *                                                                          *
