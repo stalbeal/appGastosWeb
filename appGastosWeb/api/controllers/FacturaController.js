@@ -13,6 +13,23 @@ module.exports = {
 		var fechaCan;
 		if (req.param('estado')=== 'Cancelado') {
 			fechaCan= sails.date();
+
+            Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {
+           if (err)
+                return next(err);
+
+            
+            var saldo={
+                saldo:saldos[0].saldo-req.param('valor')
+            }
+
+        Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
+            if (err) {
+                return next(err);
+            }
+        });
+        });
+            
 		}else{
 			fechaCan='N/A              ';
 		}
@@ -30,7 +47,6 @@ module.exports = {
 
         Factura.create(factura, function usuarioCreated(err, factura) {
             if (err) {
-                //console.log(err); //nos muestra el error por consola
                 req.session.flash = {
                     err: err
                 }
@@ -58,12 +74,36 @@ module.exports = {
         });
     },updatestate: function (req, res, next){
         
-        var factura={
-            
+        var factura={            
             estado: "Cancelado",           
-            fechaCancelado: sails.date()
-           
+            fechaCancelado: sails.date()           
         }
+
+         Factura.findOne(req.param('id'),function facturaFounded(err, factura) {
+            if (err) {
+                return next(err);
+
+            }
+               Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {
+               if (err)
+                    return next(err);
+
+                
+                var saldo={
+                    saldo:saldos[0].saldo-factura.valor
+
+                }
+
+            Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
+                if (err) {
+                    return next(err);
+                }
+            });
+
+        });
+           });
+
+
         
         Factura.update(req.param('id'), factura, function facturaUpdated(err) {
             if (err) {
@@ -86,6 +126,22 @@ module.exports = {
         var fechaCan;
         if (req.param('estado')=== 'Cancelado') {
             fechaCan= sails.date();
+            Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {
+           if (err)
+                return next(err);
+
+            
+        var saldo={
+            saldo:saldos[0].saldo-req.param('valor')
+        }
+
+        Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
+            if (err) {
+                return next(err);
+            }
+        });
+        });
+
         }else{
             fechaCan='N/A';
         }
@@ -111,12 +167,19 @@ module.exports = {
     },index: function(req, res, next) {
         Factura.find(function facturaFounded(err, facturas) {
             if (err) {
-                console.log(err); //
+                
                 return;
             }
             return res.view({
                 facturas: facturas
             });
+        });
+    }, destroy:function (req,res,next) {
+        Factura.destroy(req.param('id'), function (err) {
+            if(err)
+                return next(err);
+            res.redirect('/usuario/history');
+            // body...
         });
     }
 };

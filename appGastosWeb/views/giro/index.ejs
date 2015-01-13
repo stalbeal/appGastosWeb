@@ -4,13 +4,13 @@
 <br>
 <div class="container">
 <legend><h2>Historial Giros</h2></legend>
-				<table class="table table-hover" >
+				<table class="table table-hover"  >
 					<th>Referencia</th>
 					<th>Fecha</th>
 					<th>Valor</th>
 					<th>Descripcion</th>
 					
-					<th class="text-center">Acciones</th>
+					<th colspan="2" class="text-center">Acciones</th>
 
 					<% _.each(giros, function(giro) { %>
 					<tr>
@@ -20,11 +20,17 @@
 						<td><%=giro.descripcion%></td>
 						
 						<td>
-							<center><a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+							<center><a href="/giro/show/<%=giro.id%>" class="btn btn-success btn-sm ">Detalles</a>
 							</center>
 						</td>
+						<% if(session.Usuario.tipo ==='admin'){%>
+						<td><form action="/giro/destroy/<%= giro.id%>" method="POST" accept-charset="utf-8">
+								<input type="hidden" name="_method" value="delete"/>
+								<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+								<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+							</form></td>
 						
-						
+						<%}%>
 					</tr>
 					<%})%>
 				</table>

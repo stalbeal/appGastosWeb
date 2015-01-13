@@ -20,17 +20,29 @@
 						<td><%=factura.fechaPago%></td>
 						<td><%=factura.fechaLimite%></td>
 						<td><%=factura.cuentasVencidas%></td>
-						<td><%=factura.valor%></td>
-						<td><%=factura.Estado%></td>
+						<td>$<%=factura.valor%></td>
+						<td><%=factura.estado%></td>
 						<td>
 							<center>
 							<a href="/factura/show/<%=factura.id%>" class="btn btn-success btn-sm ">Detalles</a>
 						
 							<a href="/factura/updatestate/<%=factura.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+							
+
+							
+			
 							</center>
+							
 						</td>
+						<% if(session.Usuario.tipo ==='admin'){%>
+						<td><form action="/factura/destroy/<%= factura.id%>" method="POST" accept-charset="utf-8">
+								<input type="hidden" name="_method" value="delete"/>
+								<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+								<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+							</form></td>
 						
 					</tr>
+					<%}%>
 					<%})%>
 				</table>
 				<a href="/usuario/history" class="btn btn-success btn-sm pull-right ">Atrás</a>

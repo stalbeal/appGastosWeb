@@ -15,6 +15,21 @@ module.exports = {
 	   var fechaCan;
         if (req.param('estado')=== 'Cancelado') {
             fechaCan= sails.date();
+            Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {            
+           if (err)
+                return next(err);
+
+            
+        var saldo={
+            saldo:saldos[0].saldo-req.param('valor')
+        }
+
+        Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
+            if (err) {
+                return next(err);
+            }
+        });
+        });
         }else{
             fechaCan='N/A             ';
         }
@@ -71,6 +86,21 @@ module.exports = {
         var fechaCan;
         if (req.param('estado')=== 'Cancelado') {
             fechaCan= sails.date();
+            Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {            
+           if (err)
+                return next(err);
+
+            
+                var saldo={
+                    saldo:saldos[0].saldo-req.param('valor')
+                }
+
+                Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
+                    if (err) {
+                        return next(err);
+                    }
+                });
+                });
         }else{
             fechaCan='N/A';
         }
@@ -98,14 +128,40 @@ module.exports = {
             fechaCancelado: sails.date()
            
         }
-        
-        Gasto.update(req.param('id'), gasto, function gastoUpdated(err) {
+
+        Gasto.findOne(req.param('id'),function gastoFounded(err, gasto) {
+            if (err) {
+                console.log(err); //
+                return;
+            }
+           Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {            
+           if (err)
+                return next(err);
+
+            
+        var saldo={
+            saldo:saldos[0].saldo-gasto.valor
+
+        }
+
+        Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
             if (err) {
                 return next(err);
-                console.log(err);
             }
-            return res.redirect('/usuario/history' );
         });
+
+        });
+
+        });
+
+        
+            Gasto.update(req.param('id'), gasto, function gastoUpdated(err) {
+                if (err) {
+                    return next(err);
+                    
+                }
+                return res.redirect('/usuario/history' );
+            });
     }, index: function(req, res, next) {
         Gasto.find(function gastoFounded(err, gastos) {
             if (err) {
@@ -115,6 +171,13 @@ module.exports = {
             return res.view({
                 gastos: gastos
             });
+        });
+    }, destroy:function (req,res,next) {
+        Gasto.destroy(req.param('id'), function (err) {
+            if(err)
+                return next(err);
+            res.redirect('/usuario/history');
+            // body...
         });
     }
 };

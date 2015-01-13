@@ -6,7 +6,7 @@
 <legend><h2>Historial Gastos</h2></legend>
 
 								
-					<table class="table table-hover" >
+					<table class="table table-hover"  >
 					<th>Tipo</th>
 					<th>Descripcion</th>
 					<th>Valor</th>
@@ -15,13 +15,13 @@
 					<th>Estado</th>
 					
 					
-					<th colspan="0" class="text-center">Acciones</th>
+					<th colspan="2" class="text-center">Acciones</th>
 
 					<% _.each(gastos, function(gasto) { %>
 					<tr>
 						<td><%=gasto.tipo%></td>
 						<td><%=gasto.descripcion%></td>
-						<td><%=gasto.valor%></td>
+						<td>$<%=gasto.valor%></td>
 						<td><%=gasto.fechaIngreso%></td>
 						<td><%=gasto.fechaCancelado%></td>
 						<td><%=gasto.estado%></td>
@@ -32,8 +32,14 @@
 							<a href="/gasto/updatestate/<%=gasto.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
 							</center>
 						</td>
-						
+						<% if(session.Usuario.tipo ==='admin'){%>
+						<td><form action="/gasto/destroy/<%= gasto.id%>" method="POST" accept-charset="utf-8">
+								<input type="hidden" name="_method" value="delete"/>
+								<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+								<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+							</form></td>
 					</tr>
+					<%}%>
 					<%})%>
 				</table>
 
