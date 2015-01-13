@@ -1,7 +1,6 @@
 <br>
 <br>
-<br>
-<br>
+
 <div class="container">
 	<div class="row clearfix">
 			<legend><h2>Resumen</h2></legend>
@@ -22,7 +21,7 @@
 						document.write(d.getDate(),'/'+mes[d.getMonth()],'/'+d.getFullYear());
 					</script>
 					</td>
-					<td><%=saldo.saldo%></td>
+					<td>$<%=saldo.saldo%></td>
 				</tr>
 				</table>
 				<legend><h2>Historial Facturas</h2></legend>
@@ -41,8 +40,8 @@
 						<td><%=factura.fechaPago%></td>
 						<td><%=factura.fechaLimite%></td>
 						<td><%=factura.cuentasVencidas%></td>
-						<td><%=factura.valor%></td>
-						<td><%=factura.Estado%></td>
+						<td>$<%=factura.valor%></td>
+						<td><%=factura.estado%></td>
 						<td>
 							<center><a href="/factura/show/<%=factura.id%>" class="btn btn-success btn-sm ">Detalles</a>
 						
@@ -70,7 +69,7 @@
 					<tr>
 						<td><%=gasto.tipo%></td>
 						<td><%=gasto.descripcion%></td>
-						<td><%=gasto.valor%></td>
+						<td>$<%=gasto.valor%></td>
 						<td><%=gasto.fechaIngreso%></td>
 						<td><%=gasto.fechaCancelado%></td>
 						<td><%=gasto.estado%></td>
@@ -100,7 +99,7 @@
 					<tr>
 						<td><%=giro.codigo%></td>
 						<td><%=giro.fecha%></td>
-						<td><%=giro.valor%></td>
+						<td>$<%=giro.valor%></td>
 						<td><%=giro.descripcion%></td>
 						
 						<td>

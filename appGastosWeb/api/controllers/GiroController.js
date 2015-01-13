@@ -18,18 +18,18 @@ module.exports = {
             usuario:req.session.Usuario.id
         }
 
-        Saldo.findOne('54ac9015bbda1e91a811927a', function saldoEncontrado (err, resultado) {
-           if (err)
-                return next(err);
+        Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {
+              if (err)
+                 return next(err);
 
             
         var saldo={
-            saldo:resultado.saldo+req.param('valor')
+            saldo:saldos[0].saldo+req.param('valor')
         }
 
-        Saldo.update('54ac9015bbda1e91a811927a', saldo, function saldoUpdated(err) {
+        Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
             if (err) {
-                return next('err');
+                return next(err);
             }
         });
 
@@ -77,6 +77,13 @@ module.exports = {
             return res.view({
                 giros: giros
             });
+        });
+    }, destroy:function (req,res,next) {
+        Giro.destroy(req.param('id'), function (err) {
+            if(err)
+                return next(err);
+            res.redirect('/usuario/history');
+            // body...
         });
     }
 };
