@@ -3,27 +3,25 @@
 <br>
 <br>
 <script type="text/javascript">
-    $(document).ready(function(){
-    	
-    		$("#myModal").modal('show');
-    	
-        
+$(document).ready(function() {
+    $('#myModal').modal({
+        backdrop: 'static'
     });
+    $("#myModal").modal('show');
+
+});
 </script>
-
-
-
 <div id="myModal" class="modal modal-backdrop.in ">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-			 <% if(flash && flash.err) { %>
-                        <ul class="alert alert-success">
-                            <% Object.keys(flash.err).forEach(function(error){ %>
-                            <li> <%- JSON.stringify(flash.err[error]) %></li>
-                            <% }) %>
-                        </ul>
-                        <% } %>
+				<% if(flash && flash.err) { %>
+				<ul class="alert alert-success">
+					<% Object.keys(flash.err).forEach(function(error){ %>
+					<li> <%- JSON.stringify(flash.err[error]) %></li>
+					<% }) %>
+				</ul>
+				<% } %>
 				
 				<h3 class="form-signin">Login</h3>
 				
@@ -36,17 +34,16 @@
 						
 						<div class="modal-body">
 							<form action="/session/create" method="POST" class="form-signin">
-		
-						    <label for="user">Usuario</label>
-							<input type="text" class="form-control" name="usuario" placeholder="Usuario">
-						    <label for="psw">Contraseña</label>
-							<input type="password" class="form-control" name="contrasena" placeholder="Contraseña">
-							<br>
-							<button type="submit" class="btn btn-success btn-lg  pull-right" >Iniciar sesión</button>
-							<input type="hidden" value="<%= _csrf %>">
-							<br><br>
-						</form>
-
+								
+								<label for="user">Usuario</label>
+								<input type="text" class="form-control" name="usuario" placeholder="Usuario">
+								<label for="psw">Contraseña</label>
+								<input type="password" class="form-control" name="contrasena" placeholder="Contraseña">
+								<br>
+								<button type="submit" class="btn btn-success btn-lg  pull-right" >Iniciar sesión</button>
+								<input type="hidden" value="<%= _csrf %>">
+								<br><br>
+							</form>
 						</div>
 						
 					</div>
