@@ -1,0 +1,44 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+	<h2>Historial usuarios</h2>
+	
+		<table class="table table-hover" >
+					<th>Nombre</th>
+					<th>Usuario</th>
+					<th>Tipo</th>
+					
+					<th colspan="2" class="text-center">Acciones</th>
+					
+					<% _.each(usuarios, function(usuario) { %>
+					<tr>
+						<td><%=usuario.nombre%></td>
+						<td><%=usuario.usuario%></td>
+						<td><%=usuario.tipo%></td>
+						
+						<td>
+							<center>
+							<a href="/usuario/show/<%=usuario.id%>" class="btn btn-success btn-sm ">Detalles</a>
+													
+
+							
+			
+							</center>
+							
+						</td>
+						<% if(session.Usuario.tipo ==='admin'){%>
+						<td><form action="/usuario/destroy/<%= usuario.id%>" method="POST" accept-charset="utf-8">
+								<input type="hidden" name="_method" value="delete"/>
+								<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+								<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+							</form></td>
+						
+					</tr>
+					<%}%>
+					<%})%>
+				</table>
+				<a href="/usuario/history" class="btn btn-success btn-sm pull-right ">Atrás</a>
+</div>
+<br><br><br><br>

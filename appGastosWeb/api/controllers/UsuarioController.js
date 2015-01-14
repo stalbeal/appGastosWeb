@@ -23,7 +23,6 @@ module.exports = {
 
         Usuario.create(user, function usuarioCreated(err, user) {
             if (err) {
-                //console.log(err); //nos muestra el error por consola
                 req.session.flash = {
                     err: err
                 }
@@ -32,8 +31,10 @@ module.exports = {
 
             Saldo.count(function saldoCounted(err, count) {
                 if (err)
-                    return next(err);
-                console.log('cuenta ' + count);
+                    req.session.flash = {
+                    err: err
+                }
+                
                 if (count > 0)
                     return res.redirect('/usuario/history/' + user.id);
                 saldo = {
@@ -41,7 +42,9 @@ module.exports = {
                 }
                 Saldo.create(saldo, function saldoCreated(err, saldo) {
                     if (err)
-                        return next(err);
+                        req.session.flash = {
+                    err: err
+                }
 
                     return res.redirect('/usuario/history/');
                 });
@@ -61,9 +64,11 @@ module.exports = {
             .exec(function(err, facturas) {
                 if (err) {
 
-                    return next(err);
+                    req.session.flash = {
+                    err: err
                 }
-                console.log(facturas);
+                }
+                
                 Gasto.find()
                     .sort({
                         createdAt: 'desc'
@@ -72,7 +77,9 @@ module.exports = {
                     .exec(function(err, gastos) {
                         if (err) {
 
-                            return next(err);
+                            req.session.flash = {
+                          err: err
+                         }
                         }
 
                         Giro.find()
@@ -83,7 +90,9 @@ module.exports = {
                             .exec(function(err, giros) {
                                 if (err) {
 
-                                    return next(err);
+                                    req.session.flash = {
+                                        err: err
+                                    }
                                 }
 
 
@@ -92,7 +101,9 @@ module.exports = {
                                     // body...
 
                                     if (err)
-                                        return next(err);
+                                        req.session.flash = {
+                                        err: err
+                                    }
 
                                     res.view({
                                         facturas: facturas,
@@ -107,6 +118,74 @@ module.exports = {
                     });
 
             });
+    }, edit: function  (req, res, next) {
+        
+        Usuario.findOne(req.param('id'), function usuarioEncontrado (err, usuario) {
+             if (err) {
+                req.session.flash = {
+                    err: err
+                }
+            }
+            
+            return res.view({
+                usuario: usuario
+            });
+        });
+    }, update: function (req, res, next){
+        
+
+        var user = {
+            nombre: req.param('nombre'),
+            usuario: req.param('usuario'),
+            contraseña: req.param('contraseña'),
+            confirmacionContrasena: req.param('confirmacionContrasena'),
+            tipo: req.param('tipo')
+        }
+
+        
+        Usuario.update(req.param('id'), user, function usuarioUpdated(err) {
+            if (err) {
+                req.session.flash = {
+                    err: err
+                }
+            }
+            return res.redirect('/usuario/show/' + req.param('id'));
+        });
+    },index: function(req, res, next) {
+        Usuario.find(function usuarioFounded(err, usuarios) {
+            if (err) {
+                
+                if(err)
+                req.session.flash = {
+                    err: err
+                }
+            }
+            return res.view({
+                usuarios: usuarios
+            });
+        });
+    }, destroy:function (req,res,next) {
+        Usuario.destroy(req.param('id'), function (err) {
+            if(err)
+                req.session.flash = {
+                    err: err
+                }
+            res.redirect('/usuario/history');
+            // body...
+        });
+    }, show: function(req, res, next) {
+        Usuario.findOne(req.param('id'), function facturaEncontrada(err, usuario) {
+            if (err)
+                req.session.flash = {
+                    err: err
+                }
+
+            return res.view({
+                usuario: usuario
+            });
+        });
+            
+
     }
 
 };

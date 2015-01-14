@@ -16,7 +16,9 @@ module.exports = {
 
             Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {
            if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
 
             
             var saldo={
@@ -25,7 +27,9 @@ module.exports = {
 
         Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
             if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
         });
         });
@@ -58,12 +62,16 @@ module.exports = {
     },show: function(req, res, next) {
         Factura.findOne(req.param('id'), function facturaEncontrada(err, factura) {
             if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
 
 
         Usuario.findOne(factura.usuario, function usuariofactura (err, usuario) {
             if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             res.view({
                 factura: factura,
                 usuario:usuario
@@ -81,12 +89,16 @@ module.exports = {
 
          Factura.findOne(req.param('id'),function facturaFounded(err, factura) {
             if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
 
             }
                Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {
                if (err)
-                    return next(err);
+                    req.session.flash = {
+                    err: err
+                }
 
                 
                 var saldo={
@@ -96,7 +108,9 @@ module.exports = {
 
             Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
                 if (err) {
-                    return next(err);
+                    req.session.flash = {
+                    err: err
+                }
                 }
             });
 
@@ -107,7 +121,9 @@ module.exports = {
         
         Factura.update(req.param('id'), factura, function facturaUpdated(err) {
             if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
             return res.redirect('/usuario/history' );
         });
@@ -115,7 +131,9 @@ module.exports = {
         
         Factura.findOne(req.param('id'), function facturaEncontrado (err, factura) {
              if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
             
             return res.view({
@@ -128,7 +146,9 @@ module.exports = {
             fechaCan= sails.date();
             Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {
            if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
 
             
         var saldo={
@@ -137,7 +157,9 @@ module.exports = {
 
         Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
             if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
         });
         });
@@ -160,16 +182,24 @@ module.exports = {
         
         Factura.update(req.param('id'), factura, function facturaUpdated(err) {
             if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
             return res.redirect('/factura/show/' + req.param('id'));
         });
     },index: function(req, res, next) {
-        Factura.find(function facturaFounded(err, facturas) {
-            if (err) {
-                
-                return;
-            }
+        Factura.find()
+            .sort({
+                createdAt: 'desc'
+            })
+            .exec(function(err, facturas) {
+                if (err) {
+
+                    req.session.flash = {
+                    err: err
+                }
+                }
             return res.view({
                 facturas: facturas
             });
@@ -177,7 +207,9 @@ module.exports = {
     }, destroy:function (req,res,next) {
         Factura.destroy(req.param('id'), function (err) {
             if(err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             res.redirect('/usuario/history');
             // body...
         });

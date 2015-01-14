@@ -7,7 +7,6 @@
 
 module.exports = {
 	new:function  (req,res,next) {
-		//*******console.log(req.session.Usuario.usuario);
                 
         res.view();
 
@@ -17,7 +16,9 @@ module.exports = {
             fechaCan= sails.date();
             Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {            
            if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
 
             
         var saldo={
@@ -26,7 +27,9 @@ module.exports = {
 
         Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
             if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
         });
         });
@@ -45,7 +48,6 @@ module.exports = {
 
         Gasto.create(gasto, function usuarioCreated(err, gasto) {
             if (err) {
-                //console.log(err); //nos muestra el error por consola
                 req.session.flash = {
                     err: err
                 }
@@ -57,12 +59,16 @@ module.exports = {
     },show: function(req, res, next) {
         Gasto.findOne(req.param('id'), function gastoFounded(err, gasto) {
             if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
 
 
         Usuario.findOne(gasto.usuario, function usuarioGasto (err, usuario) {
             if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             res.view({
                 gasto: gasto,
                 usuario:usuario
@@ -75,7 +81,9 @@ module.exports = {
         
         Gasto.findOne(req.param('id'), function gastoEncontrado (err, gasto) {
              if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
             
             return res.view({
@@ -88,7 +96,9 @@ module.exports = {
             fechaCan= sails.date();
             Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {            
            if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
 
             
                 var saldo={
@@ -97,7 +107,9 @@ module.exports = {
 
                 Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
                     if (err) {
-                        return next(err);
+                        req.session.flash = {
+                    err: err
+                }
                     }
                 });
                 });
@@ -116,7 +128,9 @@ module.exports = {
         
         Gasto.update(req.param('id'), gasto, function gastoUpdated(err) {
             if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
             return res.redirect('/gasto/show/' + req.param('id'));
         });
@@ -131,12 +145,15 @@ module.exports = {
 
         Gasto.findOne(req.param('id'),function gastoFounded(err, gasto) {
             if (err) {
-                console.log(err); //
-                return;
+                req.session.flash = {
+                    err: err
+                }
             }
            Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {            
            if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
 
             
         var saldo={
@@ -146,7 +163,9 @@ module.exports = {
 
         Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
             if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
         });
 
@@ -157,17 +176,25 @@ module.exports = {
         
             Gasto.update(req.param('id'), gasto, function gastoUpdated(err) {
                 if (err) {
-                    return next(err);
+                    req.session.flash = {
+                    err: err
+                }
                     
                 }
                 return res.redirect('/usuario/history' );
             });
     }, index: function(req, res, next) {
-        Gasto.find(function gastoFounded(err, gastos) {
-            if (err) {
-                console.log(err); //
-                return;
-            }
+        Gasto.find()
+            .sort({
+                createdAt: 'desc'
+            })
+            .exec(function(err, gastos) {
+                if (err) {
+
+                    req.session.flash = {
+                    err: err
+                }
+                }
             return res.view({
                 gastos: gastos
             });
@@ -175,7 +202,9 @@ module.exports = {
     }, destroy:function (req,res,next) {
         Gasto.destroy(req.param('id'), function (err) {
             if(err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             res.redirect('/usuario/history');
             // body...
         });

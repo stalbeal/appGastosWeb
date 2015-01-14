@@ -13,7 +13,7 @@ module.exports = {
     create: function(req, res, next) {
         var usuario = req.param('usuario');
         var contrasena = req.param('contrasena');
-        console.log(req.param('contrasena'));
+       
 
         if (!usuario || !contrasena) {
             var error = [{
@@ -39,8 +39,6 @@ module.exports = {
                 return res.redirect('/session/login');
             }
 
-            console.log(user.contraseña);
-             console.log(user.encryptedPassword);
 
             bcrypt.compare(contrasena,user.encryptedPassword, function passwordsMatch(err, valid) {
                 if (err)

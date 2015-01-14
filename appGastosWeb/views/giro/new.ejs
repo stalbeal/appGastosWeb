@@ -5,6 +5,14 @@
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-8 col-md-offset-2">
+
+		<% if(flash && flash.err) { %>
+		<ul class="alert alert-success">
+			<% Object.keys(flash.err).forEach(function(error){ %>
+			<li> <%- JSON.stringify(flash.err[error]) %></li>
+			<% }) %>
+		</ul>
+		<% } %>
 		
 			<legend><h2>Agregar Información de un Giro</h2></legend>
 			<div class="jumbotron" >

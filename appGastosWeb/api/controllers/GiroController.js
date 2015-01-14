@@ -20,7 +20,9 @@ module.exports = {
 
         Saldo.find().limit(1).exec(function saldoFounded(err, saldos) {
               if (err)
-                 return next(err);
+                 req.session.flash = {
+                    err: err
+                }
 
             
         var saldo={
@@ -29,7 +31,9 @@ module.exports = {
 
         Saldo.update(saldos[0], saldo, function saldoUpdated(err) {
             if (err) {
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             }
         });
 
@@ -40,7 +44,6 @@ module.exports = {
 
         Giro.create(giro, function usuarioCreado(err, giro) {
             if (err) {
-                //console.log(err); //nos muestra el error por consola
                 req.session.flash = {
                     err: err
                 }
@@ -56,11 +59,15 @@ module.exports = {
 
         Giro.findOne(req.param('id'), function giroEncontrado(err, giro) {
             if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
 
             Usuario.findOne(giro.usuario, function usuarioGiro (err, usuario) {
             if (err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             res.view({
                 giro: giro,
                 usuario:usuario
@@ -69,11 +76,17 @@ module.exports = {
 
         });
     },index: function(req, res, next) {
-        Giro.find(function giroFounded(err, giros) {
-            if (err) {
-                console.log(err); //
-                return;
-            }
+        Giro.find()
+            .sort({
+                createdAt: 'desc'
+            })
+            .exec(function(err, giros) {
+                if (err) {
+
+                    req.session.flash = {
+                    err: err
+                }
+                }
             return res.view({
                 giros: giros
             });
@@ -81,7 +94,9 @@ module.exports = {
     }, destroy:function (req,res,next) {
         Giro.destroy(req.param('id'), function (err) {
             if(err)
-                return next(err);
+                req.session.flash = {
+                    err: err
+                }
             res.redirect('/usuario/history');
             // body...
         });
