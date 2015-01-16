@@ -24,9 +24,9 @@ module.exports = {
                     err: err
                 }
 
-            
+            var res=saldos[0].saldo+parseFloat(req.param('valor'));
         var saldo={
-            saldo:saldos[0].saldo+req.param('valor')
+            saldo:res
         }
 
         Saldo.update(saldos[0], saldo, function saldoUpdated(err) {

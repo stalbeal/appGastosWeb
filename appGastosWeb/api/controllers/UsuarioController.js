@@ -104,6 +104,7 @@ module.exports = {
                                         req.session.flash = {
                                         err: err
                                     }
+                                    //console.log('saldito '+saldos[0].saldo);
 
                                     res.view({
                                         facturas: facturas,
