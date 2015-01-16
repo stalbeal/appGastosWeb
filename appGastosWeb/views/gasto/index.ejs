@@ -8,7 +8,7 @@
 								
 					<table class="table table-hover"  >
 					<th>Tipo</th>
-					<th>Descripcion</th>
+					<th>Descripción</th>
 					<th>Valor</th>
 					<th>Fecha</th>
 					<th>Fecha Cancelado</th>
@@ -26,11 +26,13 @@
 						<td><%=gasto.fechaCancelado%></td>
 						<td><%=gasto.estado%></td>
 						<td>
-							<center><a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+							<a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
 							
-						
+						<% if(gasto.estado !=='Cancelado'){ %>
 							<a href="/gasto/updatestate/<%=gasto.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
-							</center>
+							<a href="/gasto/edit/<%=gasto.id%>" class="btn btn-success btn-sm ">Editar</a>
+						<%}%>
+							
 						</td>
 						<% if(session.Usuario.tipo ==='admin'){%>
 						<td><form action="/gasto/destroy/<%= gasto.id%>" method="POST" accept-charset="utf-8">

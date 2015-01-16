@@ -1,29 +1,36 @@
-<br>
-<br>
+
 
 <div class="container">
 	<div class="row clearfix">
 			<legend><h2>Resumen</h2></legend>
+			<div class="jumbotron">
 			
-			<table class="table table-hover" >
-				
-				<th>Fecha</th>
-				
-				<th>Saldo Restante</th>
-				<tr>
-					<td>
-					<script type="text/javascript">
+				<div class="row">
+					<div class="col-xs-5">
+					<h3 style="color: #3B8686">Fecha</h3>						
+					</div>
+					<div class="col-xs-5">
+					<h3 style="color: #3B8686">Saldo Disponible</h3>						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5">
+					<p>
+						<script type="text/javascript">
 						var d = new Date();
 						var mes = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 						var dia = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
 
 
-						document.write(d.getDate(),'/'+mes[d.getMonth()],'/'+d.getFullYear());
+						document.write(dia[d.getDay()], ' de '+d.getDate(),' de '+mes[d.getMonth()],' de '+d.getFullYear());
 					</script>
-					</td>
-					<td>$<%=saldo.saldo%></td>
-				</tr>
-				</table>
+					</p>					
+					</div>
+					<div class="col-xs-5">
+					<p>$<%=saldo.saldo%></p>					
+					</div>
+				</div>
+				</div>
 				<legend><h2>Historial Facturas</h2></legend>
 				<table class="table table-hover" >
 					<th>Factura</th>
@@ -44,21 +51,36 @@
 						<td><%=factura.estado%></td>
 						<td>
 							<center><a href="/factura/show/<%=factura.id%>" class="btn btn-success btn-sm ">Detalles</a>
+
+							<% if(factura.estado !=='Cancelado'){ %>
 						
-							<a href="/factura/updatestate/<%=factura.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+							<a  href="/factura/updatestate/<%=factura.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+
+							
+						
+							<a  href="/factura/edit/<%=factura.id%>" class="btn btn-success btn-sm ">Editar</a>
+							<%}%>
 						
 						</center>
 						</td>
 					</tr>
 					<%})%>
 				</table>
+				<div class="row">
+				<div class="col-xs-11">
+				<a href="/factura/new" class="btn btn-success2 btn-sm pull-right ">Agregar Factura</a>
+				
+				</div>
+				
+				<div class="col-xs-1">
 				<a href="/factura/index" class="btn btn-success2 btn-sm pull-right ">Ver Todo</a>
-				<legend><h2>Historial Gastos</h2></legend>
+				</div>
+				</div>				<legend><h2>Historial Gastos</h2></legend>
 				
 					
 					<table class="table table-hover" >
 					<th>Tipo</th>
-					<th>Descripcion</th>
+					<th>Descripción</th>
 					<th>Valor</th>
 					<th>Fecha</th>
 					<th>Fecha Cancelado</th>
@@ -76,8 +98,10 @@
 						<td>
 						<center><a href="/gasto/show/<%=gasto.id%>" class="btn btn-success btn-sm ">Detalles</a>
 							
-						
+						<% if(gasto.estado !=='Cancelado'){ %>
 							<a href="/gasto/updatestate/<%=gasto.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+							<a href="/gasto/edit/<%=gasto.id%>" class="btn btn-success btn-sm ">Editar</a>
+							<%}%>
 							</center>
 						</td>
 						
@@ -85,13 +109,22 @@
 					</tr>
 					<%})%>
 				</table>
+
+				<div class="row">
+				<div class="col-xs-11">
+				<a href="/gasto/new" class="btn btn-success2 btn-sm pull-right ">Agregar Gasto</a>
+				</div>
+				
+				<div class="col-xs-1">
 				<a href="/gasto/index" class="btn btn-success2 btn-sm pull-right ">Ver Todo</a>
+				</div>
+				</div>
 			<legend><h2>Historial Giros</h2></legend>
 				<table class="table table-hover" >
 					<th>Referencia</th>
 					<th>Fecha</th>
 					<th>Valor</th>
-					<th>Descripcion</th>
+					<th>Descripción</th>
 					
 					<th class="text-center">Acciones</th>
 
@@ -111,6 +144,15 @@
 					</tr>
 					<%})%>
 				</table>
+				<div class="row">
+				<div class="col-xs-11">
+				<a href="/giro/new" class="btn btn-success2 btn-sm pull-right ">Agregar Giro</a>
+				
+				</div>
+				
+				<div class="col-xs-1">
 				<a href="/giro/index" class="btn btn-success2 btn-sm pull-right ">Ver Todo</a>
+				</div>
+				</div>
 	</div>
 </div>
