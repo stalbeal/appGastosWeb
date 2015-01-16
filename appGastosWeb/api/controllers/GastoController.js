@@ -205,7 +205,7 @@ module.exports = {
                 req.session.flash = {
                     err: err
                 }
-            res.redirect('/usuario/history');
+            res.redirect('/gasto/index');
             // body...
         });
     }

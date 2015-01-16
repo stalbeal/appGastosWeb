@@ -210,7 +210,7 @@ module.exports = {
                 req.session.flash = {
                     err: err
                 }
-            res.redirect('/usuario/history');
+            res.redirect('/factura/index');
             // body...
         });
     }

@@ -76,9 +76,15 @@
 					<div class="form-group">
 						<label for="description">Descripción</label><textarea type="text" class="form-control" id="descripcion" name="descripcion" rows="4" style="resize: none" value="<%=factura.descripcion%>"> <%=factura.descripcion%></textarea>
 					</div>
+					<div class="row">
+					<div class="col-xs-10">
 					<button type="submit" class="btn btn-success btn-lg  pull-right" >Enviar</button>
-					<br>
-					
+					</div>
+					<div class="col-xs-2">
+					<a href="/usuario/history" class="btn btn-success btn-lg pull-right ">Cancelar</a>
+					</div>
+					</div>
+
 				</form>
 			</div>
 		</div>
