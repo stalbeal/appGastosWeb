@@ -27,7 +27,7 @@ module.exports = {
     },tipo:{
       type:'string',
       required: true,
-      enum: ['Comida', 'Pasajes Paula', 'Prestamo']
+      enum: ['Comida', 'Pasajes Paula', 'Arriendo','Otro']
     },usuario:{
         model: 'Usuario'
       }

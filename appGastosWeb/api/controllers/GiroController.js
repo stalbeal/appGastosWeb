@@ -100,6 +100,40 @@ module.exports = {
             res.redirect('/usuario/history');
             // body...
         });
+    },edit: function  (req, res, next) {
+        
+        Giro.findOne(req.param('id'), function giroEncontrado (err, giro) {
+             if (err) {
+                req.session.flash = {
+                    err: err
+                }
+            }
+            
+            return res.view({
+                giro: giro
+            });
+        });
+    }, update: function (req, res, next){
+        
+
+        var giro={
+            descripcion: req.param('descripcion'),
+            
+            codigo: req.param('codigo'),
+            fecha: req.param('fecha'),
+            valor:req.param('valor'),
+            usuario:req.session.Usuario.id
+        }
+
+        
+        Giro.update(req.param('id'), giro, function giroUpdated(err) {
+            if (err) {
+                req.session.flash = {
+                    err: err
+                }
+            }
+            return res.redirect('/giro/show/' + req.param('id'));
+        });
     }
 };
 

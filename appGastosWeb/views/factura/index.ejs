@@ -2,6 +2,7 @@
 <br>
 <br>
 <br>
+
 <div class="container">
 	<h2>Historial Facturas</h2>
 	
@@ -15,25 +16,31 @@
 					<th colspan="2" class="text-center">Acciones</th>
 					
 					<% _.each(facturas, function(factura) { %>
+					
 					<tr>
+
+
 						<td><%=factura.tipo%></td>
 						<td><%=factura.fechaPago%></td>
 						<td><%=factura.fechaLimite%></td>
 						<td><%=factura.cuentasVencidas%></td>
 						<td>$<%=factura.valor%></td>
-						<td><%=factura.estado%></td>
+						<td ><%=factura.estado%></td>
+						
 						<td>
-							<center>
+							
 							<a href="/factura/show/<%=factura.id%>" class="btn btn-success btn-sm ">Detalles</a>
 						
-							<a href="/factura/updatestate/<%=factura.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
+						<% if(factura.estado !=='Cancelado'){ %>
+						
 							
+							<a id="estado" href="/factura/updatestate/<%=factura.id%>" class="btn btn-success btn-sm ">Cambiar Estado</a>
 
 							
-			
-							</center>
-							
+						
+							<a id="editar" href="/factura/edit/<%=factura.id%>" class="btn btn-success btn-sm ">Editar</a>
 						</td>
+						<%}%>
 						<% if(session.Usuario.tipo ==='admin'){%>
 						<td><form action="/factura/destroy/<%= factura.id%>" method="POST" accept-charset="utf-8">
 								<input type="hidden" name="_method" value="delete"/>
